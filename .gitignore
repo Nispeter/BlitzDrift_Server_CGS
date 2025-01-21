@@ -1,43 +1,15 @@
-*.swp
-*.*~
-project.lock.json
-.DS_Store
-*.pyc
-nupkg/
+# Godot 4+ specific ignores
+.godot/
 
-# Visual Studio Code
-.vscode/
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
 
-# Rider
-.idea/
+# Imported translations (automatically generated from CSV files)
+*.translation
 
-# Visual Studio
-.vs/
-
-# Fleet
-.fleet/
-
-# Code Rush
-.cr/
-
-# User-specific files
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-# Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-build/
-bld/
-[Bb]in/
-[Oo]bj/
-[Oo]ut/
-msbuild.log
-msbuild.err
-msbuild.wrn
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json

@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp2qrre6r3r5"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ejir3"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ce7px"]
+a = Vector2(-0.3, 657)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nlgaw"]
+a = Vector2(0, 654)
+b = Vector2(1154, 652)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yvntf"]
+b = Vector2(1159, 3)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bnkgy"]
+a = Vector2(1151, 650)
+b = Vector2(1149, 5)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ejir3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(10, 1)
+shape = SubResource("SegmentShape2D_ce7px")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_nlgaw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_yvntf")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_bnkgy")
+
+[node name="MenuBar" type="MenuBar" parent="."]
+offset_right = 43.0
+offset_bottom = 43.0
+size_flags_horizontal = 3
+
+[node name="Host" type="Button" parent="MenuBar"]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 57.0
+offset_right = 541.0
+offset_bottom = 88.0
+text = "Host"
+
+[node name="Join" type="Button" parent="MenuBar"]
+layout_mode = 0
+offset_left = 499.0
+offset_top = 96.0
+offset_right = 537.0
+offset_bottom = 127.0
+text = "Join
+"
+
+[connection signal="pressed" from="MenuBar/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="MenuBar/Join" to="." method="_on_client_pressed"]

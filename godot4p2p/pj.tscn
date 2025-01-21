@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2u21egyaodkp"]
+
+[ext_resource type="Script" path="res://movement.gd" id="1_4ilya"]
+[ext_resource type="Texture2D" uid="uid://rdvw1tj2kbr0" path="res://icon.svg" id="1_app8b"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_4ilya")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574, 232)
+texture = ExtResource("1_app8b")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(508, 165, 506, 298, 646, 300, 639, 166)
+
+[node name="Name" type="Label" parent="."]
+offset_left = 558.0
+offset_top = 132.0
+offset_right = 598.0
+offset_bottom = 155.0

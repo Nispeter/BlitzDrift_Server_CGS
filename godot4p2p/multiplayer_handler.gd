@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 @rpc("any_peer")
 func SendPlayerInformation(name,id):
 	if !GameManager.Players.has(id):
+		print("No player with " + str(id) + " found!")
 		GameManager.Players[id] = {
 			"name": name,
 			"id": id,

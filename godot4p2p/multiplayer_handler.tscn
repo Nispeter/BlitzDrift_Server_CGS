@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg3i0aguboo2u"]
+
+[ext_resource type="Script" path="res://multiplayer_handler.gd" id="1_5nrfy"]
+
+[node name="MultiplayerHandler" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5nrfy")
+
+[node name="MenuBar" type="MenuBar" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Host" type="Button" parent="MenuBar"]
+layout_mode = 0
+offset_left = 433.0
+offset_top = 16.0
+offset_right = 477.0
+offset_bottom = 47.0
+text = "Host
+"
+
+[node name="Join" type="Button" parent="MenuBar"]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 56.0
+offset_right = 475.0
+offset_bottom = 87.0
+text = "Join
+"
+
+[node name="StartGame" type="Button" parent="MenuBar"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 104.0
+offset_right = 506.0
+offset_bottom = 135.0
+text = "Start Game
+"
+
+[connection signal="pressed" from="MenuBar/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="MenuBar/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="MenuBar/StartGame" to="." method="_on_start_game_pressed"]

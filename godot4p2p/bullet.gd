@@ -3,8 +3,8 @@ extends Node2D
 @export var velocity: Vector2 = Vector2(0, -400) 
 @export var lifespan: float = 5.0 
 
-var is_authority: bool = false
-
+#var is_authority: bool = false ##################
+var authority: int ## 1 is True, and 1 means host
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(lifespan).timeout
@@ -14,5 +14,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if is_authority: # Server (Authority) is in charge of moving the bullets, NO ONE ELSE
+	if authority: # Server (Authority) is in charge of moving the bullets, NO ONE ELSE
 		position += velocity * delta

@@ -35,16 +35,16 @@ func _physics_process(delta: float) -> void:
 			last_shot_time = Time.get_ticks_msec()
 			var bullet_position = global_position + bullet_spawn_offset
 			print("Client attempting to shoot from position:", bullet_position)
-			rpc_id(1, "shoot_bullet", bullet_position, multiplayer.get_unique_id())
+			rpc("shoot_bullet", bullet_position, multiplayer.get_unique_id())
 			print(multiplayer.get_unique_id())
 	
-@rpc
+@rpc("any_peer", "call_local")
 func shoot_bullet(position: Vector2, shooter_peer_id: int):
 	print("Client received bullet spawn at position:", position, "from peer:", shooter_peer_id)
 
 	var bullet = preload("res://bullet.tscn").instantiate()
 	bullet.global_position = position
-	bullet.is_authority = shooter_peer_id == multiplayer.get_unique_id()
+	#bullet.is_authority = shooter_peer_id == multiplayer.get_unique_id()
 	get_tree().root.add_child(bullet) # Add globally
 
 @rpc("unreliable")

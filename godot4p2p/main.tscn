@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cp2qrre6r3r5"]
+[gd_scene load_steps=7 format=3 uid="uid://cp2qrre6r3r5"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_ejir3"]
+[ext_resource type="Script" path="res://SceneManager.gd" id="1_ujkax"]
+[ext_resource type="PackedScene" uid="uid://d2u21egyaodkp" path="res://pj.tscn" id="2_tvrmg"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ce7px"]
 a = Vector2(-0.3, 657)
@@ -17,7 +18,8 @@ a = Vector2(1151, 650)
 b = Vector2(1149, 5)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_ejir3")
+script = ExtResource("1_ujkax")
+PlayerScene = ExtResource("2_tvrmg")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -34,7 +36,16 @@ shape = SubResource("SegmentShape2D_yvntf")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("SegmentShape2D_bnkgy")
 
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="Spawns" groups=["PlayerSpawnPoint"]]
+position = Vector2(238, 249)
+
+[node name="1" type="Node2D" parent="Spawns" groups=["PlayerSpawnPoint"]]
+position = Vector2(137, 251)
+
 [node name="MenuBar" type="MenuBar" parent="."]
+visible = false
 offset_right = 43.0
 offset_bottom = 43.0
 size_flags_horizontal = 3

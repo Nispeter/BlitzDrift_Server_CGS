@@ -6,6 +6,10 @@ var connected_peer_ids = []
 const PORT = 4444
 const ADDRESS = "localhost" # IP
 
+@export var shoot_cooldown: float = 0.5 # Not sure about using floats for time
+@export var bullet_spawn_offset: Vector2 = Vector2(0, -20) # For now I'm just making them only shoot upwards (Negative Y)
+var last_shot_time: float = 0.0
+
 func _on_host_pressed():
 	#$NetworkInfo/NetworkSideDisplay.text = "Server"
 	$MenuBar.visible = false
@@ -46,9 +50,26 @@ func add_newly_connected_player_character(new_peer_id):
 func add_previously_connected_player_characters(peer_ids):
 	for peer_id in peer_ids:
 		add_player_character(peer_id)
+
+#@rpc
+#func shoot_bullet(position: Vector2, shooter_peer_id: int):
+	#print("Server received shoot request from peer:", shooter_peer_id)
+	#print("Spawning bullet at position:", position)
+#
+	## Spawn bullet on all clients and server
+	#var bullet = preload("res://bullet.tscn").instantiate()
+	#if not bullet:
+		#print("Error: Bullet scene not found!")
+		#return
+	#bullet.global_position = position
+	#bullet.is_authority = shooter_peer_id == multiplayer.get_unique_id()
+	#add_child(bullet)
+#
+	#print("Bullet spawned on server.")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

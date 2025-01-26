@@ -12,11 +12,11 @@ properties/0/replication_mode = 1
 script = ExtResource("1_4ilya")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(574, 232)
 texture = ExtResource("1_app8b")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(508, 165, 506, 298, 646, 300, 639, 166)
+position = Vector2(-573, -232)
+polygon = PackedVector2Array(508, 165, 506, 298, 638, 300, 639, 166)
 
 [node name="Name" type="Label" parent="."]
 visible = false

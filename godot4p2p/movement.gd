@@ -43,8 +43,11 @@ func shoot_bullet(position: Vector2, shooter_peer_id: int):
 	print("Client received bullet spawn at position:", position, "from peer:", shooter_peer_id)
 
 	var bullet = preload("res://bullet.tscn").instantiate()
+
 	bullet.global_position = position
-	#bullet.is_authority = shooter_peer_id == multiplayer.get_unique_id()
+	print("Player global position:", global_position)
+	print("Bullet spawn position:", position)
+	bullet.authority = 1 # Redundant?
 	get_tree().root.add_child(bullet) # Add globally
 
 @rpc("unreliable")

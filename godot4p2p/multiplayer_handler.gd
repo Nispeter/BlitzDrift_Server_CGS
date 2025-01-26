@@ -33,10 +33,12 @@ func _process(delta: float) -> void:
 func SendPlayerInformation(name,id):
 	if !GameManager.Players.has(id):
 		print("No player with " + str(id) + " found!")
-		GameManager.Players[id] = {
-			"name": name,
-			"id": id,
-		}
+		var new_player = Player.new(id,name)
+		#GameManager.Players[id] = {
+		#	"name": name,
+		#	"id": id,
+		#}
+		GameManager.Players[id] = new_player
 	if multiplayer.is_server():
 		for i in GameManager.Players:
 			SendPlayerInformation.rpc(GameManager.Players[i].name, i)

@@ -46,6 +46,23 @@ func add_newly_connected_player_character(new_peer_id):
 func add_previously_connected_player_characters(peer_ids):
 	for peer_id in peer_ids:
 		add_player_character(peer_id)
+
+@rpc
+func shoot_bullet(position: Vector2, shooter_peer_id: int):
+	print("Server received shoot request from peer:", shooter_peer_id)
+	print("Spawning bullet at position:", position)
+
+	# Spawn bullet on all clients and server
+	var bullet = preload("res://bullet.tscn").instantiate()
+	if not bullet:
+		print("Error: Bullet scene not found!")
+		return
+	bullet.global_position = position
+	bullet.is_authority = shooter_peer_id == multiplayer.get_unique_id()
+	add_child(bullet)
+
+	print("Bullet spawned on server.")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

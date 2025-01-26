@@ -8,6 +8,7 @@ var is_authority: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(lifespan).timeout
+	print("Chao bullet")
 	queue_free() # Remove the bullet after its lifespan ends
 
 

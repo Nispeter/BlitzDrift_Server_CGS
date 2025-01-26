@@ -3,6 +3,10 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+@export var shoot_cooldown: float = 0.5 # Not sure about using floats for time
+@export var bullet_spawn_offset: Vector2 = Vector2(0, -20) # For now I'm just making them only shoot upwards (Negative Y)
+
+var last_shot_time: float = 0.0
 
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -25,7 +29,24 @@ func _physics_process(delta: float) -> void:
 			#rpc("remote_set_position", global_position)
 		
 		move_and_slide()
+		
+		# Handle shooting
+		if Input.is_action_just_pressed("shoot") and Time.get_ticks_msec() - last_shot_time > shoot_cooldown * 1000:
+			last_shot_time = Time.get_ticks_msec()
+			var bullet_position = global_position + bullet_spawn_offset
+			print("Client attempting to shoot from position:", bullet_position)
+			rpc_id(1, "shoot_bullet", bullet_position, multiplayer.get_unique_id())
+			print(multiplayer.get_unique_id())
 	
+@rpc
+func shoot_bullet(position: Vector2, shooter_peer_id: int):
+	print("Client received bullet spawn at position:", position, "from peer:", shooter_peer_id)
+
+	var bullet = preload("res://bullet.tscn").instantiate()
+	bullet.global_position = position
+	bullet.is_authority = shooter_peer_id == multiplayer.get_unique_id()
+	get_tree().root.add_child(bullet) # Add globally
+
 @rpc("unreliable")
 func remote_set_position(authority_position):
 	global_position = authority_position
